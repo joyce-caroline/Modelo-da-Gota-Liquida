@@ -98,19 +98,16 @@ loop do
 
     case option
         when 1
-            puts 'A massa nuclear desse átomo é:'
+            puts 'A massa desse átomo é:'
             puts var.dropModel(z, a)
-            system "clear"
 
         when 2
             puts 'A energia de ligação desse átomo é:'
             puts var.bindingEnergy(z, a)
-            system "clear"
             
         when 3
             puts 'A energia de ligação por nucleon desse átomo é:'
             puts var.nucleonEnergy(z, a)
-            system "clear"
 
         when 0
             puts 'Até Logo!'
