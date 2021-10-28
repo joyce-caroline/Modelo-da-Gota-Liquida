@@ -21,31 +21,31 @@ class Mass
 
     #Cálculo da massa das partes dos constituintes do átomo
     def f0 (z, a)
-        f0 = 1.007825 * z + 1.008665 * (a - z)
+        f0 = (1.0078 * z) + (1.0087 * (a - z))
         return f0
     end
 
     #Termo de Volume
     def f1 (z, a)
-        f1 = -@a1 * a
+        f1 = - @a1 * a
         return f1
     end
 
     #Termo de Superfície
     def f2 (z, a)
-        f2 =  @a2 * a**(2/3)
+        f2 =  @a2 * Math.cbrt(a**2)
         return f2
     end
 
     #Termo Coulombiano
     def f3 (z, a)
-        f3 = + @a3 * z**2 / a**(1/3)
+        f3 = (@a3 * z**2) / Math.cbrt(a)
         return f3
     end
 
     #Termo de Assimetria
     def f4 (z, a)
-        f4 = + @a4 * (z - a/2)**2 / a
+        f4 = @a4 * ((z- a/2)**2) / a
         return f4 
     end
 
@@ -65,12 +65,12 @@ class Mass
 
     #Definição de função para cálculo da energia de ligação
     def bindingEnergy (z, a)
-        return (f0(z, a) - dropModel(z, a)) * 931.5    
+        return (f0(z, a) - dropModel(z, a)) * 931.48 
     end
 
     #Definição de função para cálculo da energia de ligação por nucleon
     def nucleonEnergy (z, a)
-        return (f0(z, a) - dropModel(z, a)) / a * 931.5 
+        return (f0(z, a) - dropModel(z, a)) / (a * 931.5) 
         
     end
 end 
@@ -80,7 +80,7 @@ end
 var = Mass.new()
 
 loop do
-    puts "\t\t Modelo Nuclear da Gota Líquida"
+    puts "\t\t Modelo Nuclear da Gota Líquida" 
     print "\nDigite o número atômico do átomo (Z): "
     z = gets.chomp.to_f
     print 'Digite o número de massa do átomo (A): '
@@ -100,14 +100,17 @@ loop do
         when 1
             puts 'A massa desse átomo é:'
             puts var.dropModel(z, a)
+            system "clear"
 
         when 2
             puts 'A energia de ligação desse átomo é:'
             puts var.bindingEnergy(z, a)
+            system "clear"
             
         when 3
             puts 'A energia de ligação por nucleon desse átomo é:'
             puts var.nucleonEnergy(z, a)
+            system "clear"
 
         when 0
             puts 'Até Logo!'
@@ -121,4 +124,5 @@ loop do
         end
 end  
      
+
 
