@@ -81,10 +81,10 @@ var = Mass.new()
 
 loop do
     puts "\t\t Modelo Nuclear da Gota Líquida"
-    print 'Digite o número de massa do átomo (A): '
-    a = gets.chomp.to_f
     print "\nDigite o número atômico do átomo (Z): "
     z = gets.chomp.to_f
+    print 'Digite o número de massa do átomo (A): '
+    a = gets.chomp.to_f
 
     var.setN(z, a)
 
